@@ -1,0 +1,62 @@
+<h2 mat-dialog-title>{{data.title}} Contact</h2>
+    <div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill">
+            <mat-label>First Name</mat-label>
+            <input matInput id="firstName" formControlName="firstName">
+            <mat-error *ngIf="form.controls['firstName'].errors?.['required']">
+                Please enter First Name
+              </mat-error>
+        </mat-form-field>
+        <div class="fieldmargin">
+            <mat-form-field appearance="fill">
+                <mat-label>Last Name</mat-label>
+                <input matInput id="lastName" formControlName="lastName">
+                <mat-error *ngIf="form.controls['lastName'].errors?.['required']">
+                    Please enter Last Name
+                  </mat-error>
+            </mat-form-field>
+        </div> 
+        <div class="fieldmargin">
+            <mat-form-field appearance="fill">
+                <mat-label>Company Name</mat-label>
+                <input matInput id="companyName" formControlName="companyName">
+                <mat-error *ngIf="form.controls['companyName'].errors?.['required']">
+                    Please enter Company Name
+                  </mat-error>
+            </mat-form-field>
+        </div>
+    <div class="fieldmargin">
+        <mat-form-field appearance="fill">
+            <mat-label>Mobile</mat-label>
+            <input matInput id="mobileNumber" formControlName="mobileNumber">
+            <mat-error *ngIf="form.controls['mobileNumber'].errors?.['required']">
+                Please enter Mobile Number
+              </mat-error>
+              <mat-error *ngIf="form.controls['mobileNumber'].errors?.['pattern']">
+                Please enter number only for phone number
+              </mat-error>
+              <mat-error *ngIf="form.controls['mobileNumber'].errors?.['minLength']">
+                Minimum length is 8 for phone
+              </mat-error>
+        </mat-form-field>
+    </div>
+    <div class="fieldmargin">
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput id="email" formControlName="email">
+              <mat-error *ngIf="form.controls['email'].errors?.['email']">
+                Please enter a valid email address
+              </mat-error>
+              <mat-error *ngIf="form.controls['email'].errors?.['required']">
+                Please enter email address
+              </mat-error>
+        </mat-form-field>
+    </div>
+    <div class="fieldmargin">
+        <button mat-raised-button color="primary" type="submit">{{data.title}}</button>
+        <button mat-raised-button color="basic" (click)="cancel()" style="margin-left: 10px;" >Cancel</button>
+    </div>
+</form>
+</div>
+        

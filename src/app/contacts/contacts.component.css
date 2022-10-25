@@ -1,0 +1,23 @@
+table {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+  }
+.newContactButton
+{
+    margin-left: 5%;
+    margin-top: 2%;
+}
+.paginator{
+    margin-right: 5%;
+}
+.deleteButton{
+ margin-left: 1%;
+}
+.search
+{
+    float: right;
+    margin-right: 10%;
+    margin-top: 2%;
+}

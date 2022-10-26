@@ -10,26 +10,32 @@ private _apiUrl: string = 'https://localhost:7099';
   constructor(private _http: HttpClient) {
    }
    getContacts(){
-      return this._http.get<any>(this._apiUrl + '/Contacts').pipe(catchError(this.errorHandler));
+      let head_obj = new HttpHeaders().set("Authorization", "bearer "+ localStorage.getItem("userAuth"),)
+      return this._http.get<any>(this._apiUrl + '/Contacts',{headers: head_obj}).pipe(catchError(this.errorHandler));
    }
    addContacts(params: any){
     const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',
+                                  'Authorization':'bearer '+ localStorage.getItem("userAuth") })
     };
+    
+    // let head_obj = new HttpHeaders().set('Authorization', 'bearer '+ localStorage.getItem("userAuth"),)
     return this._http.post<any>(this._apiUrl + "/Contacts",params, httpOptions)
     .pipe(catchError(this.errorHandler));
    }
    updateContacts(id: number, contacts: any)
    {
     const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',
+                                  'Authorization':'bearer '+ localStorage.getItem("userAuth") })
     };
     return this._http.patch<any>(this._apiUrl + `/Contacts?id=${id}`, contacts, httpOptions)
     .pipe(catchError(this.errorHandler));
    }
    deleteContact(id : number){
     const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',
+                                  'Authorization':'bearer '+ localStorage.getItem("userAuth") })
     };
     return this._http.delete(this._apiUrl + `/Contacts?id=${id}`,httpOptions).pipe(catchError(this.errorHandler));
    }

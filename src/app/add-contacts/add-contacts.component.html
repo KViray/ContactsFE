@@ -54,7 +54,7 @@
         </mat-form-field>
     </div>
     <div class="fieldmargin">
-        <button mat-raised-button color="primary" type="submit">{{data.title}}</button>
+        <button mat-raised-button color="primary" [disabled]="!form.valid" type="submit">{{data.title}}</button>
         <button mat-raised-button color="basic" (click)="cancel()" style="margin-left: 10px;" >Cancel</button>
     </div>
 </form>

@@ -3,9 +3,10 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Subject, Subscription, takeUntil } from 'rxjs';
 import { ContactInterface } from '../contacts/contacts.component';
-import { ContactService } from '../services/contact.service';
-import Swal from 'sweetalert2';
+
 import { Router } from '@angular/router';
+import { ContactService } from '../services/contactservice/contact.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-contacts',
@@ -55,19 +56,19 @@ export class AddContactsComponent implements OnInit, OnDestroy {
     {
       if(this.data.title === "Add")
       {
-        this.contactService.addContacts(this.form.value).pipe(takeUntil(this._destroy)).subscribe();
+        this.contactService.addContacts(this.form.value).subscribe();
         Swal.fire({
           icon: 'success',
           title: 'Success',
           text: 'Successfully added contact',
         })
         this.dialogRef.close();
-        
+        this.reloadComponent()
       }
       else if(this.data.title === "Update")
       {
         this.contactService.updateContacts(this.data.updateContact.id, this.form.value)
-        .pipe(takeUntil(this._destroy)).subscribe();
+        .subscribe();
         Swal.fire({
           icon: 'success',
           title: 'Success',
@@ -82,7 +83,7 @@ export class AddContactsComponent implements OnInit, OnDestroy {
     this._router.routeReuseStrategy.shouldReuseRoute = () => false;
     this._router.onSameUrlNavigation = 'reload';
     this._router.navigate(['']);
-}
+  }
 cancel()
 {
   this.dialogRef.close();

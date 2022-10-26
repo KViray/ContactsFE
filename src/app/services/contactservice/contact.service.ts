@@ -19,7 +19,6 @@ private _apiUrl: string = 'https://localhost:7099';
                                   'Authorization':'bearer '+ localStorage.getItem("userAuth") })
     };
     
-    // let head_obj = new HttpHeaders().set('Authorization', 'bearer '+ localStorage.getItem("userAuth"),)
     return this._http.post<any>(this._apiUrl + "/Contacts",params, httpOptions)
     .pipe(catchError(this.errorHandler));
    }
